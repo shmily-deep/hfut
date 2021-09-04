@@ -1,0 +1,36 @@
+module SignleCPU(
+    input clk,
+    input rst,
+    output[3:0]op,
+    output[2:0] r1,
+    output[2:0] r2,
+    output[8:0]imm_addr,
+    output[15:0]ReadData1,
+    output[15:0]ReadData2,
+    output[15:0]WriteData
+    );
+    wire[3:0]InsAddress;
+    wire[15:0]Ins,extendimm,DataOut,num,result;
+    wire  ExtSel,Mem2Alu,Reg2Imm,RegRW,DataMemRW;
+    wire[2:0]alu_op;
+    
+    PC pc(clk,rst,InsAddress);
+    
+    InsMemory insmemory(InsAddress,Ins);
+    assign op = Ins[15:12];
+    assign r1 = Ins[11:9];
+    assign r2 = Ins[8:6];
+    assign imm_addr = Ins[8:0];
+    
+    RegFile regfile(clk,RegRW,r1,r2,WriteData,ReadData1,ReadData2);
+    
+    ControlUnit cu(op,ExtSel,Mem2Alu,Reg2Imm,RegRW,DataMemRW,alu_op);
+    
+    DataMemory datamem(DataMemRW,imm_addr,ReadData1,DataOut);
+    SignZeroExtend signextend( ExtSel,imm_addr,extendimm);
+    Multiplexer16 m1(Reg2Imm,ReadData2,extendimm,num);
+    ALU alu(alu_op,ReadData1,num,result);
+    Multiplexer16 m2(Mem2Alu,DataOut,result,WriteData);
+    
+    
+endmodule

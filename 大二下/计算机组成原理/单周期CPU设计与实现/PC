@@ -1,0 +1,12 @@
+module PC(clk,rst,y);
+input clk,rst;
+output y;
+reg[3:0] y;
+initial y = 0;
+always@(posedge clk or negedge rst)begin
+    if(!rst)
+        y = 0;
+    else
+        y = y + 1;
+end
+endmodule

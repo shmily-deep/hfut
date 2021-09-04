@@ -1,0 +1,13 @@
+module Test();
+    reg clk,rst;
+    wire[2:0] r1,r2;
+    wire[8:0]imm_addr;
+    wire[15:0] ReadData1,ReadData2,WriteData;
+    wire[3:0] op;
+    SignleCPU f(clk,rst,op,r1,r2,imm_addr,ReadData1,ReadData2,WriteData);
+    initial begin
+        clk = 0;rst = 1;
+        #40 $stop;
+    end
+    always #5 clk = ~clk;
+endmodule

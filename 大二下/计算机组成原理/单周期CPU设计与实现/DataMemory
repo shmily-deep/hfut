@@ -1,0 +1,26 @@
+module DataMemory(
+    DataRW,//读写信号，当为1时，写入;为0时，读出
+    DAddr, //读或写的地址
+    DataIn,//要写入的数据
+    DataOut,//要读出的数据
+
+    );
+    input DataRW;
+    input[8:0] DAddr;
+    input[15:0] DataIn;
+    output reg[15:0] DataOut;
+   
+    reg [15:0] memory[9'd511:0];//512个16位存储单元
+    integer i;
+    initial begin
+        for(i=0;i<512;i=i+1)
+            memory[i] = 10*i;
+    end
+    always@(*)begin
+        if(DataRW)
+            memory[DAddr] = DataIn;
+         else
+            DataOut = memory[DAddr];
+    end
+
+endmodule

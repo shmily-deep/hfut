@@ -1,0 +1,61 @@
+module ControlUnit(
+    input[3:0] op,//op操作符
+    output reg ExtSel,
+    output reg Mem2Alu,//二路选择，当为1输出mem[addr],否者输出result
+    output reg Reg2Imm,//二路选择器，当为1时输出[r2],否则输出imm
+    output reg RegRW,//寄存器堆读写信号，为1时写入，为0时，读出
+    output reg DataMemRW,//数据存储器读写信号，为1时写入，为0时，读出
+    output reg[2:0] alu_op//ALU的操作控制信号
+    );
+    initial begin
+        ExtSel = 0;
+        Mem2Alu = 0;
+        Reg2Imm = 0;
+        RegRW = 0;
+        DataMemRW = 0;
+        alu_op = 0;
+    end
+    always@(*)begin
+        case(op)
+            //LDA   取数
+            4'b0000:begin
+            ExtSel = 0;
+            Mem2Alu = 1;
+            Reg2Imm = 0;
+            RegRW = 1;
+            DataMemRW = 0;
+            alu_op = 0;   
+            end
+            
+            //ADD   [r1] + [r2] -> r1
+            4'b0001:begin
+            ExtSel = 0;
+            Mem2Alu = 0;
+            Reg2Imm = 1;
+            RegRW = 1;
+            DataMemRW = 0;
+            alu_op = 0;   
+            end
+            
+            //ADDI  [r1] + SignExt[imm] -> r1
+            4'b0010:begin
+            ExtSel = 1;
+            Mem2Alu = 0;
+            Reg2Imm = 0;
+            RegRW = 1;
+            DataMemRW = 0;
+            alu_op = 0;   
+            end
+            
+            //STA   存数
+            4'b0011:begin
+            ExtSel = 0;
+            Mem2Alu = 0;
+            Reg2Imm = 0;
+            RegRW = 0;
+            DataMemRW = 1;
+            alu_op = 0;   
+            end
+        endcase
+    end
+endmodule

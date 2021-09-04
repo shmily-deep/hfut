@@ -1,0 +1,28 @@
+module RegFile(
+    clk,    //  时钟信号
+    RegRW,  //读写信号，为1时写入（上升沿有效），为0时，读数据，
+    read_reg1,//要读出数据1的地址
+    read_reg2,//要读出数据2的地址
+    write_data,//要写入的数据
+    reg1,//要读出的数据1
+    reg2//要读出的数据2
+    );
+    input clk,RegRW;
+    input[2:0] read_reg1,read_reg2;
+    input[15:0] write_data;
+    output[15:0] reg1,reg2;
+    
+    integer i;
+    reg[15:0] regfile[7:0];//有8个16位的寄存器
+    initial begin
+        for(i=0;i<8;i=i+1)
+            regfile[i] = 2*i+1;
+    end
+    always@(posedge clk)begin
+        if(RegRW == 1)
+            regfile[read_reg1] = write_data;
+    end
+    
+    assign reg1 = regfile[read_reg1];
+    assign reg2 = regfile[read_reg2];
+endmodule

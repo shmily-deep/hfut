@@ -1,0 +1,8 @@
+module SignZeroExtend(
+    input ExtSel,//控制信号，为1时进行符号扩展，为0时全补零
+    input[8:0] imm,
+    output[15:0]extendimm
+    );
+    assign extendimm[8:0] = imm;
+    assign extendimm[15:9] = ExtSel ?(imm[8] ? 7'b1111111 : 7'b0000000): 7'b0000000;
+endmodule

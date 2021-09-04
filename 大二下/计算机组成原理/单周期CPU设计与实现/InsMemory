@@ -1,0 +1,25 @@
+module InsMemory(Addr,Ins);
+input[3:0] Addr;
+output Ins;
+reg[15:0] Ins;
+
+reg [15:0]unit[4'd15:0];//16个16位存储单元
+integer i,j;
+initial begin
+    for(i=0;i<16;i=i+1)begin
+        j = i % 5;
+        unit[i][2:0] = j+2;
+        unit[i][5:3] = j+1;
+        unit[i][8:6] = j;
+        unit[i][15:9] = i%3;
+    end
+    unit[0] = 16'b0000_000_000000001;
+    unit[1] = 16'b0001_000_001_000000;
+    unit[2] = 16'b0010_000_111_111_111;
+    unit[3] = 16'b0011_000_000000000;
+    
+end
+always@(*)begin
+     Ins = unit[Addr];
+ end 
+endmodule

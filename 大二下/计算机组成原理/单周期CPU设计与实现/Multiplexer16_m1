@@ -1,0 +1,12 @@
+module Multiplexer16(
+    control, //选择信号，当为1时，输出in1,当为0时，输出in0
+    in1,
+    in0,
+    out
+    );
+    input control;
+    input[15:0] in1,in0;
+    output[15:0] out;
+    
+    assign out = control ? in1:in0;
+endmodule
