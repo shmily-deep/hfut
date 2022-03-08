@@ -1,0 +1,177 @@
+/**
+ * Unicorn Admin Template
+ * Diablo9983 -> diablo9983@gmail.com
+**/
+* {
+	outline:none !important;
+	-moz-outline: none !important;
+}
+/* Main */
+body {
+	overflow-x: hidden;
+	margin-top: -9px;
+}
+
+/*取消超链接选中时下划线*/
+a:hover {
+	text-decoration: none;
+}
+
+/* 顶层样式 */
+#header {
+	height: 77px;
+	position: relative;
+	width: 100%;
+	z-index: -9;
+}
+
+#header h1 {
+
+	height: 131px;
+	line-height: 30px;
+	overflow: hidden;
+	position: relative;
+	padding-left: 40px;
+
+	top: 14px;
+	width: 180px;
+	font-size: 22px;
+	color: #bebebe;
+}
+
+#header h1 a {
+	display: block;
+}
+
+/* 顶层按钮 */
+#user-nav {
+	position: absolute;
+	right: 10px;
+	top: 5px;
+}
+
+#user-nav > ul > li {
+	list-style-type: none;
+	padding: 0;
+}
+
+#user-nav > ul > li > a {
+	padding: 5px 10px;
+	font-size: 10px;
+}
+
+#user-nav > ul > li > a > i{
+	vertical-align: top;
+	background-image: url('../img/glyphicons-halflings-white.png');
+	opacity: .5;
+	margin-top: 2px;
+}
+
+/* 侧边导航栏 */
+#sidebar {
+	display: block;
+	float: left;
+	position: relative;
+	width: 220px;
+	z-index: 16;
+}
+
+#sidebar > ul {
+	list-style: none;
+	margin: 10px 0 0;
+	padding: 0;
+	position: absolute;
+	width: 220px;
+}
+#sidebar > ul > li {
+	display: block;
+	position: relative;
+}
+
+#sidebar > ul > li.active {
+	box-shadow: 0 2px 4px rgba(0,0,0,0.2) inset;
+}
+
+#sidebar > ul > li > a {
+	padding: 10px 0 10px 15px;
+	display: block;
+	color: #AAAAAA;
+}
+
+#sidebar > ul > li > a > i {
+	margin-right: 10px;
+}
+
+#sidebar > ul > li.active > a {
+	background: url("../img/menu-active.png") no-repeat scroll right center transparent !important;
+}
+
+#sidebar > ul > li > a > .label {
+	margin: 0 20px 0 0;
+	float: right;
+	padding: 3px 5px 2px;
+	box-shadow: 0 1px 2px rgba(0,0,0,0.5) inset, 0 1px 0 rgba(255,255,255,0.2);
+}
+
+#sidebar > ul ul {
+	display: none;
+	margin: 0;
+	padding: 0;
+	box-shadow: 0 0 3px rgba(0,0,0,0.5) inset;
+}
+#sidebar > ul li.open ul {
+	display: block;
+}
+#sidebar > ul ul li a{
+	padding: 10px 0 10px 25px;
+	display: block;
+	color: #777777;
+}
+
+#sidebar > ul ul li:first-child a {
+	border-top: 0;
+}
+#sidebar > ul ul li:last-child a {
+	border-bottom: 0;
+}
+
+
+
+/* 主体内容 */
+#content {
+	background: none repeat scroll 0 0 #eeeeee;
+	margin-left: 220px;
+	margin-right: 0;
+	padding-bottom: 500px;
+	position: relative;
+	min-height: 500px;
+	width: auto;
+
+	border-top-left-radius: 8px;
+}
+
+#content-header {
+	background-image: -webkit-gradient(linear, 0 0%, 0 100%, from(#FFFFFF), to(#EEEEEE));
+	background-image: -webkit-linear-gradient(top, #FFFFFF 0%, #EEEEEE 100%);
+	background-image: -moz-linear-gradient(top, #FFFFFF 0%, #EEEEEE 100%);
+	background-image: -ms-linear-gradient(top, #FFFFFF 0%, #EEEEEE 100%);
+	background-image: -o-linear-gradient(top, #FFFFFF 0%, #EEEEEE 100%);
+	background-image: linear-gradient(top, #FFFFFF 0%, #EEEEEE 100%);
+	border-top-left-radius: 8px;
+	height: 60px;
+	position: absolute;
+	width: 100%;
+	margin-top: -38px;
+	z-index: 20;
+
+	text-align: center;
+	padding-top: 40px;
+	font-size: 32px;
+	color: #535353;
+}
+
+
+
+.container-fluid .row-fluid:first-child {
+	margin-top: 40px;
+}

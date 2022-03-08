@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<title>员工工资管理系统</title>
+		<meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+		<script src="js/jquery.min.js"></script>
+		<script src="js/bootstrap.min.js"></script>
+		<script src="js/unicorn.js"></script>
+		<link rel="stylesheet" type="text/css" href="css/iconfont.css"/>
+		<link rel="stylesheet" href="css/bootstrap.min.css" />
+		<link rel="stylesheet" href="css/common.css" />
+		<link rel="stylesheet" href="css/commonColor.css" class="skin-color" />
+
+		<link rel="stylesheet" href="css/home.css"/>
+
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	</head>
+	<body>
+
+		<div id="header">
+			<h1>工资管理系统</h1>
+		</div>
+
+		<div id="user-nav" class="navbar navbar-inverse">
+            <ul class="nav btn-group">
+                <li class="btn btn-inverse"><a title="" href="index.html"><i class="icon icon-share-alt"></i> <span class="text">退出登录</span></a></li>
+            </ul>
+        </div>
+
+		<div id="sidebar">
+			<ul>
+				<li class="active"><a href="Staff_Home.html"><i class="iconfont icon-gerenzhongxin-zhong"></i><span> 个人中心</span></a></li>
+				<li><a href="Staff_MySalary.html"><i class="iconfont icon-wage"></i><span> 我的工资</span></a></li>
+				<li><a href="Staff_MyAttend.html"><i class="iconfont icon-kaoqin"></i><span> 我的考勤</span></a></li>
+				<li><a href="Staff_About.html"><i class="iconfont icon-guanyu"></i><span> 关于</span></a></li>
+			</ul>
+		</div>
+
+		<div id="content">
+			<div id="content-header">个人中心</div>
+
+			<div class="container-fluid">
+
+				<div id="personalInfo" class="form-inline">
+					<label for="Sno">工号</label><input class="form-control" type="text" id="Sno" placeholder="" disabled>
+					<label for="Sname">姓名</label><input class="form-control" type="text" id="Sname" placeholder="" disabled>
+					<label for="Sage">年龄</label><input class="form-control" type="text" id="Sage" placeholder="" disabled> <br>
+					<label for="Ssex">性别</label><input class="form-control" type="text" id="Ssex" placeholder="" disabled>
+					<label for="Dname">部门</label><input class="form-control" type="text" id="Dname" placeholder="" disabled>
+					<label for="Spos">职位</label><input class="form-control" type="text" id="Spos" placeholder="" disabled> <br>
+					<label for="Sdate">入职时间</label><input class="form-control" type="text" id="Sdate" placeholder="" disabled>
+					<label for="Card">银行卡号</label><input class="form-control" type="text" id="Card" placeholder="" disabled>
+					<label for="Stel">电话</label><input class="form-control" type="text" id="Stel" value=""> <br>
+					<label for="Saddr">地址</label><input class="form-control" type="text" id="Saddr" value="">
+				</div>
+
+				<div>
+					<button class="btn btn-success" type="button" id="setPersonalInfo">确定</button>
+				</div>
+
+			</div>
+
+		</div>
+
+
+
+	<script>
+
+        $("#setPersonalInfo").click(function () {
+            $.ajax({
+                url: "setPersonalInfo",
+                data: {
+                	"Stel": $("#Stel").val(),
+					"Saddr": $("#Saddr").val()
+				},
+                success: function (data) {
+                    alert("修改成功");
+                }
+            })
+        })
+
+        //获取个人信息
+        $(function () {
+            $.ajax({
+                url: "getPersonalInfo",
+                data: {},
+                success: function (data) {
+                    var obj = JSON.parse(data);
+                    $("#Sno").attr("placeholder", obj.Sno);
+                    $("#Sname").attr("placeholder", obj.Sname);
+                    $("#Ssex").attr("placeholder", obj.Ssex);
+                    $("#Sage").attr("placeholder", obj.Sage);
+                    $("#Dname").attr("placeholder", obj.Dname);
+                    $("#Spos").attr("placeholder", obj.Spos);
+                    $("#Sdate").attr("placeholder", obj.Sdate);
+					$("#Card").attr("placeholder", obj.Card);
+                    $("#Stel").val(obj.Stel);
+                    $("#Saddr").val(obj.Saddr);
+                }
+            })
+        })
+	</script>
+	</body>
+</html>

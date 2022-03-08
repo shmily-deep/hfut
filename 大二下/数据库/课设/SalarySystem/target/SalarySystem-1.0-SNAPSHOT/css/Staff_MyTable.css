@@ -1,0 +1,39 @@
+/*StaffTable*/
+#year_search {
+    padding-top: 8%;
+    text-align: left;
+    padding-left: 5%;
+    margin-bottom: 10px;
+}
+
+#year_search label {
+    display: inline-block;
+    font-size: 16px;
+    margin-right: 10px;
+    text-align: right;
+}
+
+#year_search input {
+    margin-right: 12px;
+    width: 90px;
+    height: 26px;
+    font-size: 16px;
+    text-align: right;
+    margin-top: 5px;
+}
+
+#year_search button {
+    margin-bottom: 5px;
+    border-radius: 14px;
+    background: #5a5a5a;
+}
+
+.table tbody>tr>td {
+    text-align: center;
+}
+.table thead>tr>th {
+    text-align: center;
+    vertical-align: middle;
+}
+
+

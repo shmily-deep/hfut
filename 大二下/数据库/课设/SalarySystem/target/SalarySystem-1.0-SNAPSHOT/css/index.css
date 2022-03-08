@@ -1,0 +1,83 @@
+body {
+    background-image: url(/image/bk.jpg);
+    background-repeat: no-repeat;
+    background-size: 100%;
+}
+
+#login-box {
+    background-color: #00000068;
+    border-radius: 13px;
+    text-align: center;
+    margin: 0 auto;
+    margin-top: 180px;
+    width: 350px;
+    height: 400px;
+}
+
+#login-box h1 {
+    padding-top: 60px;
+    font-size: 32px;
+    color: #ffffff;
+}
+
+#login-box .input-box {
+    margin-top: 30px;
+}
+
+#login-box .input-box input {
+    border: none;
+    background: none;
+    border-bottom: #FFFFFF 2px solid;
+    padding: 5px 10px;
+    outline: none;
+    color: #FFFFFF;
+}
+
+input[type="password"]::-ms-reveal {
+    color: white;
+}
+
+#number_msg {
+    color: red;
+}
+
+#password_msg {
+    color: red;
+}
+
+#changeAndRegister {
+
+    padding-right: 20px;
+    margin-left: 20px;
+    text-align: right;
+}
+
+#changePassword {
+    color: white;
+    font-size: 14px;
+    margin-right: 15px;
+}
+
+#register {
+    color: white;
+    font-size: 14px;
+}
+
+#login-box button {
+    line-height: 20px;
+    margin-top: 40px;
+    width: 230px;
+    height: 30px;
+    border-radius: 13px;
+    outline: none;
+    border: none;
+    font-size: 16px;
+    color: #FFFFFF;
+}
+
+#login-box .input-box i {
+    color: #ffffff;
+}
+
+
+

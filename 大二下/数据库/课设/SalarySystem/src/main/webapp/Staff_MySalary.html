@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>员工工资管理系统</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+<!--    <script src="js/jquery.min.js"></script>-->
+    <script src="js/jquery-3.5.1.min.js"></script>
+<!--    <script src="js/bootstrap.min.js"></script>-->
+    <script src="bootstrap-3.4.1/js/bootstrap.min.js"></script>
+
+    <script src="js/unicorn.js"></script>
+    <script src="js/bootstrap-table.min.js"></script>
+    <script src="js/bootstrap-table-zh-CN.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="css/iconfont.css"/>
+    <link rel="stylesheet" href="css/bootstrap.min.css" />
+<!--    <link rel="stylesheet" href="bootstrap-3.4.1/css/bootstrap.min.css" />-->
+
+    <link rel="stylesheet" href="css/common.css" />
+    <link rel="stylesheet" href="css/commonColor.css" class="skin-color" />
+<!--    <link rel="stylesheet" href="css/bootstrap-table.min.css" />-->
+
+    <link rel="stylesheet" href="css/Staff_MyTable.css"/>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+</head>
+<body>
+
+<div id="header">
+    <h1>工资管理系统</h1>
+</div>
+
+<div id="user-nav" class="navbar navbar-inverse">
+    <ul class="nav btn-group">
+        <li class="btn btn-inverse"><a title="" href="index.html"><i class="icon icon-share-alt"></i> <span class="text">退出登录</span></a></li>
+    </ul>
+</div>
+
+<div id="sidebar">
+    <ul>
+        <li><a href="Staff_Home.html"><i class="iconfont icon-gerenzhongxin-zhong"></i><span> 个人中心</span></a></li>
+        <li class="active"><a href="Staff_MySalary.html"><i class="iconfont icon-wage"></i><span> 我的工资</span></a></li>
+        <li><a href="Staff_MyAttend.html"><i class="iconfont icon-kaoqin"></i><span> 我的考勤</span></a></li>
+        <li><a href="Staff_About.html"><i class="iconfont icon-guanyu"></i><span> 关于</span></a></li>
+    </ul>
+</div>
+
+<div id="content">
+    <div id="content-header">我的工资</div>
+
+    <div class="container-fluid">
+
+        <div id="year_search">
+            <label for="date">年度查询</label><input class="form-control" type="text" id="date" maxlength="4">
+            <button class="btn btn-success" type="button" id="searchButton">查询</button>
+        </div>
+
+
+            <table class="table table-bordered table-striped" id="salary">
+                <thead>
+                <tr>
+                    <th rowspan="2">工号</th>
+                    <th rowspan="2">日期</th>
+                    <th rowspan="2">基本工资</th>
+                    <th rowspan="2">工龄补贴</th>
+                    <th colspan="3">津贴</th>
+                    <th colspan="5">奖罚</th>
+                    <th colspan="2">代扣款项</th>
+                    <th rowspan="2">应发工资</th>
+                    <th rowspan="2">实发工资</th>
+                </tr>
+                <tr>
+                    <th>餐补</th>
+                    <th>交通</th>
+                    <th>住房</th>
+                    <th>迟到</th>
+                    <th>早退</th>
+                    <th>出差</th>
+                    <th>全勤</th>
+                    <th>加班</th>
+                    <th>个人所得税</th>
+                    <th>五险一金</th>
+
+                </tr>
+                </thead>
+                <tbody>
+
+
+                </tbody>
+            </table>
+
+
+    </div>
+
+</div>
+
+
+
+<script>
+
+
+    $("#searchButton").click(function () {
+        $.ajax({
+            url: "getSalary",
+            data: {
+                "date": $("#date").val()
+            },
+            success: function (str) {
+                console.log(str);
+                var data = JSON.parse(str);
+                var list = '';
+                for(var i = 0; i < data.length; i++){
+                    list += "<tr>\n" +
+                        "                    <td>"+data[i].Sno+"</td>\n" +
+                        "                    <td>"+data[i].Rdate+"</td>\n" +
+                        "                    <td>"+data[i].Bsalary+"</td>\n" +
+                        "                    <td>"+data[i].Wsub+"</td>\n" +
+                        "                    <td>"+data[i].Msub+"</td>\n" +
+                        "                    <td>"+data[i].Tsub+"</td>\n" +
+                        "                    <td>"+data[i].Hsub+"</td>\n" +
+                        "                    <td>"+data[i].Late+"</td>\n" +
+                        "                    <td>"+data[i].Leave+"</td>\n" +
+                        "                    <td>"+data[i].Evec+"</td>\n" +
+                        "                    <td>"+data[i].Fattend+"</td>\n" +
+                        "                    <td>"+data[i].Extra+"</td>\n" +
+                        "                    <td>"+data[i].Stax+"</td>\n" +
+                        "                    <td>"+data[i].Sins+"</td>\n" +
+                        "                    <td>"+data[i].Sala+"</td>\n" +
+                        "                    <td>"+data[i].Npay+"</td>\n" +
+                        "                </tr>"
+                }
+                $("tbody").html(list)
+
+            }
+        })
+    })
+
+</script>
+</body>
+</html>

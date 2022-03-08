@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<title>员工工资管理系统</title>
+		<meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+		<script src="js/jquery.min.js"></script>
+		<script src="js/bootstrap.min.js"></script>
+		<script src="js/unicorn.js"></script>
+
+
+		<link rel="stylesheet" type="text/css" href="css/iconfont.css"/>
+		<link rel="stylesheet" href="css/bootstrap.min.css" />
+		<link rel="stylesheet" href="css/common.css" />
+		<link rel="stylesheet" href="css/commonColor.css" class="skin-color" />
+
+		<link rel="stylesheet" href="css/Manager_Button_Table.css"/>
+
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" /></head>
+	<body>
+
+		<div id="header">
+			<h1>工资管理系统</h1>
+		</div>
+
+		<div id="user-nav" class="navbar navbar-inverse">
+            <ul class="nav btn-group">
+                <li class="btn btn-inverse"><a href="index.html"><i class="icon icon-share-alt"></i> <span class="text">退出登录</span></a></li>
+            </ul>
+        </div>
+
+		<div id="sidebar">
+			<ul>
+				<li><a href="Manager_Home.html"><i class="iconfont icon-gerenzhongxin-zhong"></i><span> 个人中心</span></a></li>
+				<li class="submenu">
+					<a href="#"><i class="iconfont icon-yuangongxinxi"></i><span> 员工管理</span></a>
+					<ul>
+						<li><a href="Manager_Staff_select.html">员工查询</a></li>
+						<li><a href="Manager_Staff_edit.html">员工编辑</a></li>
+					</ul>
+				</li>
+				<li class="submenu">
+					<a href="#"><i class="iconfont icon-bumenxinxi"></i><span> 部门管理</span></a>
+					<ul>
+						<li><a href="Manager_Department_select.html">部门查询</a></li>
+					</ul>
+				</li>
+				<li class="submenu open">
+					<a href="#"><i class="iconfont icon-zhiwei"></i><span> 职位管理</span></a>
+					<ul>
+						<li class="active"><a href="Manager_Job_select.html">职位查询</a></li>
+						<li><a href="Manager_Job_edit.html">职位编辑</a></li>
+					</ul>
+				</li>
+				<li>
+					<a href="Manager_SalaryItem.html"><i class="iconfont icon-xiangmu"></i><span> 工资项管理</span></a>
+				</li>
+				<li class="submenu">
+					<a href="#"><i class="iconfont icon-kaoqin1"></i><span> 考勤管理</span></a>
+					<ul>
+						<li><a href="Manager_Attend_select.html">考勤查询</a></li>
+						<li><a href="Manager_Attend_edit.html">考勤编辑</a></li>
+					</ul>
+				</li>
+				<li>
+					<a href="Manager_SalaryTotal.html"><i class="iconfont icon-wage"></i><span> 工资结算</span></a>
+				</li>
+				<li>
+					<a href="Manager_About.html"><i class="iconfont icon-guanyu"></i><span> 关于</span></a>
+				</li>
+			</ul>
+		</div>
+
+		<div id="content">
+			<div id="content-header">职位信息查询</div>
+			<div class="container-fluid">
+
+				<table class="table table-bordered table-striped" style="margin-top: 50px">
+					<thead>
+						<tr>
+							<th>职位名</th>
+							<th>基本工资</th>
+						</tr>
+					</thead>
+					<tbody>
+					</tbody>
+				</table>
+			</div>
+		</div>
+
+		<script>
+			$(function (){
+				$.ajax({
+					url: "getJobInfoServlet",
+					data: {
+
+					},
+					success: function (str) {
+						var data = JSON.parse(str);
+						var list = '';
+						for(var i = 0; i < data.length; i++){
+							list += "<tr>\n" +
+									"                    <td>"+data[i].Spos+"</td>\n" +
+									"                    <td>"+data[i].Bsalary+"</td>\n" +
+									"                </tr>"
+						}
+						$("tbody").html(list)
+					}
+				})
+			})
+
+
+		</script>
+	</body>
+</html>

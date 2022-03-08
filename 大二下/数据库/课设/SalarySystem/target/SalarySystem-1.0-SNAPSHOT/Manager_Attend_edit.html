@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<title>员工工资管理系统</title>
+		<meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+		<script src="js/jquery.min.js"></script>
+		<script src="js/bootstrap.min.js"></script>
+		<script src="js/unicorn.js"></script>
+
+
+		<link rel="stylesheet" type="text/css" href="css/iconfont.css"/>
+		<link rel="stylesheet" href="css/bootstrap.min.css" />
+		<link rel="stylesheet" href="css/common.css" />
+		<link rel="stylesheet" href="css/commonColor.css" class="skin-color" />
+
+		<link rel="stylesheet" href="css/AddInfo.css"/>
+		<link rel="stylesheet" href="css/Manager_Button_Table.css"/>
+
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" /></head>
+	<body>
+
+		<div id="header">
+			<h1>工资管理系统</h1>
+		</div>
+
+		<div id="user-nav" class="navbar navbar-inverse">
+            <ul class="nav btn-group">
+                <li class="btn btn-inverse"><a href="index.html"><i class="icon icon-share-alt"></i> <span class="text">退出登录</span></a></li>
+            </ul>
+        </div>
+
+		<div id="sidebar">
+			<ul>
+				<li><a href="Manager_Home.html"><i class="iconfont icon-gerenzhongxin-zhong"></i><span> 个人中心</span></a></li>
+				<li class="submenu">
+					<a href="#"><i class="iconfont icon-yuangongxinxi"></i><span> 员工管理</span></a>
+					<ul>
+						<li><a href="Manager_Staff_select.html">员工查询</a></li>
+						<li><a href="Manager_Staff_edit.html">员工编辑</a></li>
+					</ul>
+				</li>
+				<li class="submenu">
+					<a href="#"><i class="iconfont icon-bumenxinxi"></i><span> 部门管理</span></a>
+					<ul>
+						<li><a href="Manager_Department_select.html">部门查询</a></li>
+					</ul>
+				</li>
+				<li class="submenu">
+					<a href="#"><i class="iconfont icon-zhiwei"></i><span> 职位管理</span></a>
+					<ul>
+						<li><a href="Manager_Job_select.html">职位查询</a></li>
+						<li><a href="Manager_Job_edit.html">职位编辑</a></li>
+					</ul>
+				</li>
+				<li>
+					<a href="Manager_SalaryItem.html"><i class="iconfont icon-xiangmu"></i><span> 工资项管理</span></a>
+				</li>
+				<li class="submenu open">
+					<a href="#"><i class="iconfont icon-kaoqin1"></i><span> 考勤管理</span></a>
+					<ul>
+						<li><a href="Manager_Attend_select.html">考勤查询</a></li>
+						<li class="active"><a href="Manager_Attend_edit.html">考勤编辑</a></li>
+					</ul>
+				</li>
+				<li>
+					<a href="Manager_SalaryTotal.html"><i class="iconfont icon-wage"></i><span> 工资结算</span></a>
+				</li>
+				<li>
+					<a href="Manager_About.html"><i class="iconfont icon-guanyu"></i><span> 关于</span></a>
+				</li>
+			</ul>
+		</div>
+
+		<div id="content">
+			<div id="content-header">考勤编辑</div>
+
+			<div class="container-fluid">
+
+				<div class="form-inline AddInfo" style="margin-top: 50px">
+					<label for="Sno_add">工号</label><input class="form-control" type="text" id="Sno_add" value="">
+					<label for="Adate_add">年月</label><input class="form-control" type="text" id="Adate_add" value="">
+					<label for="Nlate_add">迟到</label><input class="form-control" type="text" id="Nlate_add" value=""> <br>
+					<label for="Nleave_add">早退</label><input class="form-control" type="text" id="Nleave_add" value="">
+					<label for="Nevec_add">出差</label><input class="form-control" type="text" id="Nevec_add" value="">
+					<label for="Nextra_add">加班</label><input class="form-control" type="text" id="Nextra_add" value=""> <br>
+					<label for="Nattend_add">全勤</label><input class="form-control" type="text" id="Nattend_add" value="">
+					<button class="btn btn-success setButton" type="button" id="add">增加</button>
+				</div>
+				<div class="form-inline AddInfo" style="margin-top: 50px">
+					<label for="Sno_update">工号</label><input class="form-control" type="text" id="Sno_update" value="">
+					<label for="Adate_update">年月</label><input class="form-control" type="text" id="Adate_update" value="">
+					<label for="Nlate_update">迟到</label><input class="form-control" type="text" id="Nlate_update" value=""> <br>
+					<label for="Nleave_update">早退</label><input class="form-control" type="text" id="Nleave_update" value="">
+					<label for="Nevec_update">出差</label><input class="form-control" type="text" id="Nevec_update" value="">
+					<label for="Nextra_update">加班</label><input class="form-control" type="text" id="Nextra_update" value=""> <br>
+					<label for="Nattend_update">全勤</label><input class="form-control" type="text" id="Nattend_update" value="">
+					<button class="btn btn-success setButton" type="button" id="update">修改</button>
+				</div>
+
+				<div class="form-inline AddInfo" style="margin-top: 50px">
+					<label for="Sno_delete">工号</label><input class="form-control" type="text" id="Sno_delete" value="">
+					<label for="Adate_delete">年月</label><input class="form-control" type="text" id="Adate_delete" value="">
+					<button class="btn btn-success setButton" type="button" id="delete">删除</button>
+				</div>
+
+			</div>
+
+		</div>
+
+		<script>
+
+			$("#add").click(function () {
+				$.ajax({
+					url: "attendEditServlet",
+					data: {
+						"Flag": "1",
+						"Sno_add": $("#Sno_add").val(),
+						"Adate_add": $("#Adate_add").val(),
+						"Nlate_add": $("#Nlate_add").val(),
+						"Nleave_add": $("#Nleave_add").val(),
+						"Nevec_add": $("#Nevec_add").val(),
+						"Nextra_add": $("#Nextra_add").val(),
+						"Nattend_add": $("#Nattend_add").val(),
+					},
+					success: function (str) {
+						alert("增加成功");
+					}
+				})
+			})
+			$("#update").click(function () {
+				$.ajax({
+					url: "attendEditServlet",
+					data: {
+						"Flag": "2",
+						"Sno_update": $("#Sno_update").val(),
+						"Adate_update": $("#Adate_update").val(),
+						"Nlate_update": $("#Nlate_update").val(),
+						"Nleave_update": $("#Nleave_update").val(),
+						"Nevec_update": $("#Nevec_update").val(),
+						"Nextra_update": $("#Nextra_update").val(),
+						"Nattend_update": $("#Nattend_update").val(),
+					},
+					success: function (str) {
+						alert("修改成功");
+					}
+				})
+			})
+			$("#delete").click(function () {
+				$.ajax({
+					url: "attendEditServlet",
+					data: {
+						"Flag": "3",
+						"Sno_delete": $("#Sno_delete").val(),
+						"Adate_delete": $("#Adate_delete").val(),
+					},
+					success: function (str) {
+						alert("删除成功");
+					}
+				})
+			})
+		</script>
+	</body>
+</html>

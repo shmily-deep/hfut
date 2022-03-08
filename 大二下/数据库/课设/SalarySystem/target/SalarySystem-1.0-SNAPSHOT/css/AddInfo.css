@@ -1,0 +1,32 @@
+/* 个人信息 */
+.AddInfo {
+	padding-top: 3%;
+	padding-left: 15%;
+	padding-right: 5%;
+}
+
+.AddInfo label {
+	display: inline-block;
+	width: 72px;
+	font-size: 16px;
+	margin-right: 10px;
+	margin-bottom: 80px;
+	text-align: right;
+}
+
+.AddInfo input {
+	margin-right: 12px;
+	height: 26px;
+	font-size: 16px;
+}
+
+.setButton {
+
+	float: right;
+	margin-right: 20%;
+	width: 100px;
+	height: 34px;
+	font-size: 21px;
+	background: #6b6b6b;
+	border-radius: 16px;
+}

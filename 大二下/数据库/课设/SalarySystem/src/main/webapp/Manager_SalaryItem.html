@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<title>员工工资管理系统</title>
+		<meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+		<script src="js/jquery.min.js"></script>
+		<script src="js/bootstrap.min.js"></script>
+		<script src="js/unicorn.js"></script>
+
+
+		<link rel="stylesheet" type="text/css" href="css/iconfont.css"/>
+		<link rel="stylesheet" href="css/bootstrap.min.css" />
+		<link rel="stylesheet" href="css/common.css" />
+		<link rel="stylesheet" href="css/commonColor.css" class="skin-color" />
+
+		<link rel="stylesheet" href="css/AddInfo.css"/>
+		<link rel="stylesheet" href="css/Manager_Button_Table.css"/>
+
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" /></head>
+	<body>
+
+		<div id="header">
+			<h1>工资管理系统</h1>
+		</div>
+
+		<div id="user-nav" class="navbar navbar-inverse">
+            <ul class="nav btn-group">
+                <li class="btn btn-inverse"><a href="index.html"><i class="icon icon-share-alt"></i> <span class="text">退出登录</span></a></li>
+            </ul>
+        </div>
+
+		<div id="sidebar">
+			<ul>
+				<li><a href="Manager_Home.html"><i class="iconfont icon-gerenzhongxin-zhong"></i><span> 个人中心</span></a></li>
+				<li class="submenu">
+					<a href="#"><i class="iconfont icon-yuangongxinxi"></i><span> 员工管理</span></a>
+					<ul>
+						<li><a href="Manager_Staff_select.html">员工查询</a></li>
+						<li><a href="Manager_Staff_edit.html">员工编辑</a></li>
+					</ul>
+				</li>
+				<li class="submenu">
+					<a href="#"><i class="iconfont icon-bumenxinxi"></i><span> 部门管理</span></a>
+					<ul>
+						<li><a href="Manager_Department_select.html">部门查询</a></li>
+					</ul>
+				</li>
+				<li class="submenu">
+					<a href="#"><i class="iconfont icon-zhiwei"></i><span> 职位管理</span></a>
+					<ul>
+						<li><a href="Manager_Job_select.html">职位查询</a></li>
+						<li><a href="Manager_Job_edit.html">职位编辑</a></li>
+					</ul>
+				</li>
+				<li class="active">
+					<a href="Manager_SalaryItem.html"><i class="iconfont icon-xiangmu"></i><span> 工资项管理</span></a>
+				</li>
+				<li class="submenu">
+					<a href="#"><i class="iconfont icon-kaoqin1"></i><span> 考勤管理</span></a>
+					<ul>
+						<li><a href="Manager_Attend_select.html">考勤查询</a></li>
+						<li><a href="Manager_Attend_edit.html">考勤编辑</a></li>
+					</ul>
+				</li>
+				<li>
+					<a href="Manager_SalaryTotal.html"><i class="iconfont icon-wage"></i><span> 工资结算</span></a>
+				</li>
+				<li>
+					<a href="Manager_About.html"><i class="iconfont icon-guanyu"></i><span> 关于</span></a>
+				</li>
+			</ul>
+		</div>
+
+		<div id="content">
+			<div id="content-header">工资项管理</div>
+
+			<div class="container-fluid">
+
+				<div class="form-inline AddInfo" style="margin-top: 50px">
+					<label for="late">迟到</label><input class="form-control" type="text" id="late" value="">
+					<label for="evec">出差</label><input class="form-control" type="text" id="evec" value="">
+					<label for="extra">加班</label><input class="form-control" type="text" id="extra" value=""> <br>
+					<label for="attend">全勤</label><input class="form-control" type="text" id="attend" value="">
+					<label for="leave">早退</label><input class="form-control" type="text" id="leave" value="">
+					<button class="btn btn-success setButton" type="button" id="update1">修改</button>
+				</div>
+
+				<div class="form-inline AddInfo">
+					<label for="Msub">餐饮补贴</label><input class="form-control" type="text" id="Msub" >
+					<label for="Tsub">交通补贴</label><input class="form-control" type="text" id="Tsub" >
+					<label for="Hsub">住房补贴</label><input class="form-control" type="text" id="Hsub" >
+					<button class="btn btn-success setButton" type="button" id="update2">修改</button>
+				</div>
+
+				<div class="form-inline AddInfo" style="margin-top: 20px">
+					<label for="Msub">一年工龄</label><input class="form-control" type="text" id="workAge1" >
+					<label for="Tsub">三年工龄</label><input class="form-control" type="text" id="workAge3" >
+					<label for="Hsub">五年工龄</label><input class="form-control" type="text" id="workAge5" > <br>
+					<label for="Hsub">十年工龄</label><input class="form-control" type="text" id="workAge10" >
+					<button class="btn btn-success setButton" type="button" id="update3">修改</button>
+				</div>
+
+			</div>
+
+		</div>
+
+		<script>
+
+			$(function (){
+				$.ajax({
+					url: "SalaryItemServlet",
+					data: {
+						"Flag": "1",
+					},
+					success: function (str) {
+						var obj = JSON.parse(str);
+						$("#late").val(obj.late);
+						$("#evec").val(obj.evec);
+						$("#extra").val(obj.extra);
+						$("#attend").val(obj.attend);
+						$("#leave").val(obj.leave);
+						$("#Msub").val(obj.Msub);
+						$("#Tsub").val(obj.Tsub);
+						$("#Hsub").val(obj.Hsub);
+						$("#workAge1").val(obj.workAge1);
+						$("#workAge3").val(obj.workAge3);
+						$("#workAge5").val(obj.workAge5);
+						$("#workAge10").val(obj.workAge10);
+					}
+				})
+			})
+
+			$("#update1").click(function () {
+				$.ajax({
+					url: "SalaryItemServlet",
+					data: {
+						"Flag": "2",
+						"late": $("#late").val(),
+						"evec": $("#evec").val(),
+						"extra": $("#extra").val(),
+						"attend": $("#attend").val(),
+						"leave": $("#leave").val(),
+					},
+					success: function (str) {
+						alert("修改成功");
+					}
+				})
+			})
+			$("#update2").click(function () {
+				$.ajax({
+					url: "SalaryItemServlet",
+					data: {
+						"Flag": "3",
+						"Msub": $("#Msub").val(),
+						"Tsub": $("#Tsub").val(),
+						"Hsub": $("#Hsub").val(),
+					},
+					success: function (str) {
+						alert("修改成功");
+					}
+				})
+			})
+			$("#update3").click(function () {
+				$.ajax({
+					url: "SalaryItemServlet",
+					data: {
+						"Flag": "4",
+						"workAge1": $("#workAge1").val(),
+						"workAge3": $("#workAge3").val(),
+						"workAge5": $("#workAge5").val(),
+						"workAge10": $("#workAge10").val(),
+					},
+					success: function (str) {
+						alert("修改成功");
+					}
+				})
+			})
+		</script>
+	</body>
+</html>
